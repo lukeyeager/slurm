@@ -224,7 +224,7 @@ The system <span class="commandline">_init()</span> is called before the Slurm
   <span class="commandline"> numa_bitmap:</span> Identify NUMA nodes on which to execute zonesort.
   If NULL, then execute zonesort on all NUMA nodes</p>
 
-<p class="commandline"> char *node_features_p_user_update(uid_t uid)
+<p class="commandline"> bool node_features_p_user_update(uid_t uid)
 <p style="margin-left:.2in"><b>Description</b>:<br>
   Determine if the specified user can modify the currently available node
   features.
