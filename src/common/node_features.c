@@ -237,7 +237,7 @@ extern int node_features_g_reconfig(void)
 	return rc;
 }
 
-/* Return TRUE if this (one) feature name is under this plugin's control */
+/* Return TRUE if this (one) feature name is under any configured plugin's control */
 extern bool node_features_g_changeable_feature(char *feature)
 {
 	DEF_TIMERS;
@@ -250,7 +250,7 @@ extern bool node_features_g_changeable_feature(char *feature)
 	for (i = 0; ((i < g_context_cnt) && !changeable); i++)
 		changeable = (*(ops[i].changeable_feature))(feature);
 	slurm_mutex_unlock(&g_context_lock);
-	END_TIMER2("node_features_g_reconfig");
+	END_TIMER2("node_features_g_changeable_feature");
 
 	return changeable;
 }
@@ -580,7 +580,7 @@ extern uint32_t node_features_g_boot_time(void)
 		boot_time = MAX(boot_time, (*(ops[i].boot_time))());
 	}
 	slurm_mutex_unlock(&g_context_lock);
-	END_TIMER2("node_features_g_user_update");
+	END_TIMER2("node_features_g_boot_time");
 
 	return boot_time;
 }
